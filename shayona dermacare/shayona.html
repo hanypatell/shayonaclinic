@@ -1,0 +1,953 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shayona Dermacare Clinic</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg: #f7fbfc;
+      --text: #0e2a32;
+      --muted: #5f808a;
+      --primary: #1db9c3;     /* teal */
+      --secondary: #7bd3ea;   /* light blue */
+      --accent: #7dd87d;      /* soft green */
+      --card: rgba(255,255,255,0.65);
+      --glass: rgba(255,255,255,0.42);
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --radius-lg: 26px;
+      --gradient: linear-gradient(135deg, rgba(125,216,125,0.15), rgba(123,211,234,0.20), rgba(29,185,195,0.20));
+      --hero-gradient: radial-gradient(1200px 500px at 10% 10%, rgba(29,185,195,0.25), transparent 60%), radial-gradient(800px 400px at 90% 10%, rgba(123,211,234,0.25), transparent 60%), radial-gradient(1000px 600px at 50% 90%, rgba(125,216,125,0.25), transparent 60%);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    /* Layout */
+    .container{width:min(1200px, 92%);margin:0 auto}
+    section{padding:72px 0;position:relative}
+
+    /* Nav */
+    .nav{
+      position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.75);
+      backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid rgba(0,0,0,0.05)
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand .logo{
+      width:42px;height:42px;border-radius:50%;
+      background:conic-gradient(from 180deg, #1db9c3, #7bd3ea, #7dd87d, #1db9c3);
+      display:grid;place-items:center;color:#fff;box-shadow:var(--shadow)
+    }
+    .brand span{font-weight:700;letter-spacing:.3px}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{
+      padding:8px 12px;border-radius:10px;color:var(--muted);transition:.2s;
+      font-weight:500
+    }
+    .nav-links a:hover{color:var(--text);background:rgba(29,185,195,0.10)}
+    .nav-cta{
+      background:linear-gradient(135deg,var(--primary),#16a3ac);
+      color:#fff;padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);font-weight:600
+    }
+    .menu-btn{display:none}
+
+    /* Hero */
+    .hero{
+      position:relative;padding:88px 0 64px;background:
+        var(--hero-gradient),
+        url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat fixed;
+      color:#08343d;
+      isolation:isolate;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;background:rgba(255,255,255,0.65);z-index:0
+    }
+    .hero-grid{position:relative;z-index:1;display:grid;gap:28px;align-items:center}
+    .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(29,185,195,0.12);color:#0b4d54;border:1px solid rgba(29,185,195,0.25);padding:6px 12px;border-radius:999px;font-weight:600;width:max-content}
+    .hero h1{
+      font-family:"Playfair Display",serif;font-size:clamp(32px,5vw,56px);
+      line-height:1.05;margin:8px 0 10px
+    }
+    .hero p{color:#245e69;max-width:720px;font-size:1.05rem}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      appearance:none;border:0;cursor:pointer;border-radius:14px;padding:12px 16px;font-weight:600;transition:.25s;box-shadow:var(--shadow)
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--primary),#12a0aa);color:#fff}
+    .btn-primary:hover{transform:translateY(-1px);filter:brightness(1.03)}
+    .btn-outline{background:rgba(255,255,255,.7);backdrop-filter:blur(6px);border:1px solid rgba(0,0,0,.08);color:#0f5e67}
+    .btn-outline:hover{background:#fff}
+    .highlights{
+      display:flex;gap:12px;flex-wrap:wrap;margin-top:16px
+    }
+    .chip{
+      display:flex;align-items:center;gap:8px;background:var(--glass);
+      backdrop-filter:blur(8px) saturate(140%);border:1px solid rgba(0,0,0,0.06);
+      padding:8px 12px;border-radius:999px;font-weight:500;color:#0f545b;animation:float 6s ease-in-out infinite
+    }
+    .chip:nth-child(2){animation-delay:1s}.chip:nth-child(3){animation-delay:2s}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* Cards common */
+    .cards{display:grid;gap:18px}
+    .card{
+      background:var(--card);backdrop-filter:blur(10px) saturate(140%);
+      border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius);
+      box-shadow:var(--shadow);transition:transform .25s, box-shadow .25s
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.10)}
+
+    /* Section titles */
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+    .section-head h2{
+      font-family:"Playfair Display",serif;font-size:clamp(26px,3.4vw,36px);margin:0
+    }
+    .section-sub{color:var(--muted);max-width:700px}
+
+    /* About */
+    .about-grid{display:grid;gap:18px}
+    .profile{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:16px}
+    .avatar{
+      width:96px;height:96px;border-radius:16px;background:
+      linear-gradient(135deg,#c1f1f1,#e0f7ff);display:grid;place-items:center;color:#0a6169;font-size:36px
+    }
+    .info{display:grid;gap:6px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{background:rgba(125,216,125,0.18);color:#0c5a0c;border:1px solid rgba(125,216,125,0.35);padding:6px 10px;border-radius:999px;font-weight:600}
+    .meta-cards{display:grid;gap:14px}
+    .meta{padding:14px;display:grid;gap:8px}
+    .meta .title{font-weight:700}
+    .meta i{color:#0b7c85}
+
+    /* Services */
+    .service-grid{display:grid;gap:16px}
+    .service{display:grid;grid-template-rows:160px auto;overflow:hidden}
+    .service .media{
+      background:var(--gradient);display:grid;place-items:center;color:#0b6d75;font-size:42px
+    }
+    .service .body{padding:14px;display:grid;gap:8px}
+    .service .body p{color:var(--muted);font-size:.95rem;margin:0}
+    .service .actions{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+    .pill{font-weight:700;color:#0b5960;background:rgba(123,211,234,0.22);border:1px solid rgba(123,211,234,0.45);padding:6px 12px;border-radius:999px}
+    .btn-text{color:#0a7d86;font-weight:700}
+    .btn-text:hover{opacity:.85}
+
+    /* Appointment */
+    .appointment{display:grid;gap:16px}
+    .form{padding:16px;display:grid;gap:12px}
+    .field{display:grid;gap:6px}
+    label{font-weight:600;font-size:.95rem;color:#104a51}
+    input,select,textarea{
+      border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:12px 12px;font:inherit;background:#fff;outline:none
+    }
+    textarea{min-height:120px;resize:vertical}
+    .form-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .note{color:#0b6f77;font-weight:600}
+    .status{padding:12px;border-radius:12px;background:rgba(125,216,125,0.18);border:1px solid rgba(125,216,125,0.35);color:#0c5a0c;display:none}
+
+    /* Reports */
+    .reports-grid{display:grid;gap:16px}
+    .uploads{padding:14px}
+    .file-list{display:grid;gap:8px;margin-top:10px}
+    .file-row{
+      display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;
+      background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:10px
+    }
+    .file-row .name{font-weight:600;color:#0c5159}
+    .file-row .tag{font-size:.85rem;color:var(--muted)}
+    .ghost{opacity:.65}
+
+    /* Dashboards */
+    .dashboard-grid{display:grid;gap:16px}
+    .dash-cards{display:grid;gap:16px}
+    .dash-card{padding:16px;display:grid;gap:10px}
+    .dash-title{display:flex;align-items:center;gap:10px;font-weight:700}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .kpi{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:12px;display:grid;gap:6px}
+    .kpi .val{font-size:20px;font-weight:800;color:#0b5860}
+    .notif{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:10px;gap:10px}
+    .notif .msg{display:flex;align-items:center;gap:8px}
+    .notif .msg i{color:#f59e0b}
+    .notif button{background:transparent;border:0;color:#0a8088;font-weight:700;cursor:pointer}
+    .list{display:grid;gap:8px}
+    .list .row{display:flex;justify-content:space-between;background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:10px}
+    .list .row span:first-child{font-weight:600}
+
+    /* Charts (CSS-based) */
+    .chart{
+      height:160px;background:linear-gradient(180deg, rgba(123,211,234,0.18), transparent 60%);
+      border-radius:14px;padding:12px;display:flex;align-items:flex-end;gap:10px;border:1px solid rgba(0,0,0,0.06)
+    }
+    .bar{width:22px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--primary),#7bd3ea)}
+    .bar[data-h="30"]{height:30%}.bar[data-h="45"]{height:45%}.bar[data-h="60"]{height:60%}
+    .bar[data-h="70"]{height:70%}.bar[data-h="85"]{height:85%}
+
+    /* Testimonials */
+    .testimonials{display:grid;gap:16px}
+    .carousel{position:relative;overflow:hidden}
+    .track{display:flex;transition:transform .5s ease;gap:16px}
+    .tcard{min-width: calc(100% - 2px);background:var(--card);border-radius:var(--radius);border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow);padding:16px}
+    .stars{color:#f5b70a}
+    .t-nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+    .t-nav button{
+      pointer-events:auto;width:40px;height:40px;border-radius:10px;border:0;background:#fff;box-shadow:var(--shadow);color:#0e5057;cursor:pointer
+    }
+
+    /* Contact */
+    .contact-grid{display:grid;gap:16px}
+    .map{border:0;width:100%;height:260px;border-radius:14px}
+    .contact-card{padding:16px;display:grid;gap:12px}
+    .contact-row{display:flex;gap:10px;align-items:center;color:#0a646c}
+
+    /* Footer */
+    footer{padding:30px 0;color:#2f636b}
+    .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .foot small{opacity:.8}
+
+    /* Responsive */
+    @media (min-width:680px){
+      .hero-grid{grid-template-columns:1.1fr .9fr}
+      .about-grid{grid-template-columns:1.3fr .7fr}
+      .service-grid{grid-template-columns:repeat(3,1fr)}
+      .appointment{grid-template-columns:1.1fr .9fr}
+      .reports-grid{grid-template-columns:1.2fr .8fr}
+      .dashboard-grid{grid-template-columns:1fr 1fr}
+      .dash-cards{grid-template-columns:repeat(3,1fr)}
+      .tcard{min-width: calc(50% - 8px)}
+      .contact-grid{grid-template-columns:1.1fr .9fr}
+    }
+    @media (min-width:980px){
+      .tcard{min-width: calc(33.333% - 11px)}
+    }
+    @media (max-width:880px){
+      .nav-links{display:none}
+      .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;border:1px solid rgba(0,0,0,0.08);background:#fff}
+      .mobile-menu{
+        position:fixed;inset:70px 12px auto 12px;background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,0.06);box-shadow:var(--shadow);
+        padding:10px;display:none;z-index:60
+      }
+      .mobile-menu a{display:block;padding:12px;border-radius:10px;color:#0a6a73}
+      .mobile-menu a:hover{background:rgba(29,185,195,0.10)}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo"><i class="fa-solid fa-leaf"></i></div>
+        <span>Shayona Dermacare Clinic</span>
+      </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#appointment">Appointment</a>
+        <a href="#reports">Reports</a>
+        <a href="#patient">Patient</a>
+        <a href="#doctor">Doctor</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </div>
+      <button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="container mobile-menu" id="mobileMenu">
+      <a href="#home" onclick="toggleMenu(false)">Home</a>
+      <a href="#about" onclick="toggleMenu(false)">About</a>
+      <a href="#services" onclick="toggleMenu(false)">Services</a>
+      <a href="#appointment" onclick="toggleMenu(false)">Appointment</a>
+      <a href="#reports" onclick="toggleMenu(false)">Reports</a>
+      <a href="#patient" onclick="toggleMenu(false)">Patient</a>
+      <a href="#doctor" onclick="toggleMenu(false)">Doctor</a>
+      <a href="#reviews" onclick="toggleMenu(false)">Reviews</a>
+      <a href="#contact" onclick="toggleMenu(false)">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="kicker"><i class="fa-solid fa-heart-pulse"></i> Dermatology Care</span>
+        <h1>Healthy Skin, Confident You</h1>
+        <p>Personalized skin, hair, and nail treatments backed by science and delivered with care. Experience modern dermatology in a calming, patient-first space.</p>
+        <div class="hero-cta">
+          <a href="#appointment" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+          <a href="#services" class="btn btn-outline"><i class="fa-solid fa-spa"></i> Explore Services</a>
+        </div>
+        <div class="highlights">
+          <span class="chip"><i class="fa-solid fa-sun"></i> Skin Treatments</span>
+          <span class="chip"><i class="fa-solid fa-hand-sparkles"></i> Nail Care</span>
+          <span class="chip"><i class="fa-solid fa-person"></i> Hair Restoration</span>
+        </div>
+      </div>
+      <div class="card" style="padding:16px;display:grid;gap:12px">
+        <div class="kpi" style="background:linear-gradient(135deg, #e7fcff, #effff6);">
+          <div style="display:flex;align-items:center;gap:10px">
+            <i class="fa-solid fa-user-doctor" style="color:#0a7d86"></i>
+            <div>
+              <div class="val">15+ Years</div>
+              <small class="muted">Clinical Experience</small>
+            </div>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="val">12k+</div>
+            <small class="muted">Patients Served</small>
+          </div>
+          <div class="kpi">
+            <div class="val">4.9★</div>
+            <small class="muted">Average Rating</small>
+          </div>
+          <div class="kpi">
+            <div class="val">98%</div>
+            <small class="muted">Satisfaction</small>
+          </div>
+        </div>
+        <div class="chart">
+          <div class="bar" data-h="45" title="Jan"></div>
+          <div class="bar" data-h="60" title="Feb"></div>
+          <div class="bar" data-h="70" title="Mar"></div>
+          <div class="bar" data-h="85" title="Apr"></div>
+          <div class="bar" data-h="60" title="May"></div>
+          <div class="bar" data-h="70" title="Jun"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About Our Clinic</h2>
+        <p class="section-sub">At Shayona Dermacare Clinic, we merge advanced dermatology with a personal touch—providing tailored treatments for skin, hair, and nails in a serene, modern setting.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card profile">
+          <div class="avatar"><i class="fa-solid fa-user-doctor"></i></div>
+          <div class="info">
+            <strong>Dr. Anaya Mehta, MD (Dermatology)</strong>
+            <span class="muted" style="color:var(--muted)">Board-certified dermatologist specializing in acne, pigmentation, hair loss, and nail disorders.</span>
+            <div class="badges">
+              <span class="badge"><i class="fa-solid fa-award"></i> 15+ yrs experience</span>
+              <span class="badge"><i class="fa-solid fa-flask"></i> Evidence-based</span>
+              <span class="badge"><i class="fa-solid fa-sparkles"></i> Modern clinic</span>
+            </div>
+          </div>
+        </div>
+        <div class="meta-cards">
+          <div class="card meta">
+            <div class="title"><i class="fa-solid fa-clock"></i> Clinic Timings</div>
+            <div class="muted">Mon–Sat: 10:00 AM – 1:00 PM, 4:30 PM – 8:30 PM</div>
+            <div class="muted">Sunday by prior appointment</div>
+          </div>
+          <div class="card meta">
+            <div class="title"><i class="fa-solid fa-location-dot"></i> Address</div>
+            <div class="muted">2nd Floor, Serenity Plaza, Palm Avenue, Ahmedabad, Gujarat 380015</div>
+          </div>
+          <div class="card meta">
+            <div class="title"><i class="fa-solid fa-phone"></i> Contact</div>
+            <div class="muted">+91 98765 43210 • hello@shayonadermacare.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Treatments & Services</h2>
+        <p class="section-sub">Comprehensive dermatology—from medical skin care to aesthetic enhancements and restorative hair therapies.</p>
+      </div>
+      <div class="service-grid">
+        <!-- Skin -->
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-face-smile"></i></div>
+          <div class="body">
+            <strong>Acne & Scar Management</strong>
+            <p>Customized regimens and advanced procedures to reduce acne and smooth scarring.</p>
+            <div class="actions">
+              <span class="pill">Skin</span>
+              <button class="btn btn-text" data-know="Acne & Scar Management">Know More</button>
+            </div>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-sun"></i></div>
+          <div class="body">
+            <strong>Pigmentation & Melasma</strong>
+            <p>Peels, topicals, and lifestyle guidance for even, radiant skin tone.</p>
+            <div class="actions">
+              <span class="pill">Skin</span>
+              <button class="btn btn-text" data-know="Pigmentation & Melasma">Know More</button>
+            </div>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <div class="body">
+            <strong>Anti‑Aging & Glow</strong>
+            <p>Non-invasive rejuvenation, collagen stimulation, and glow-up routines.</p>
+            <div class="actions">
+              <span class="pill">Skin</span>
+              <button class="btn btn-text" data-know="Anti‑Aging & Glow">Know More</button>
+            </div>
+          </div>
+        </div>
+        <!-- Hair -->
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-person"></i></div>
+          <div class="body">
+            <strong>Hair Loss (PRP/Medical)</strong>
+            <p>Evidence-based therapies including PRP and targeted nutrition.</p>
+            <div class="actions">
+              <span class="pill">Hair</span>
+              <button class="btn btn-text" data-know="Hair Loss (PRP/Medical)">Know More</button>
+            </div>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-comb"></i></div>
+          <div class="body">
+            <strong>Dandruff & Scalp Care</strong>
+            <p>Relief from dandruff, itch, and flaking with scalp-focused plans.</p>
+            <div class="actions">
+              <span class="pill">Hair</span>
+              <button class="btn btn-text" data-know="Dandruff & Scalp Care">Know More</button>
+            </div>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-syringe"></i></div>
+          <div class="body">
+            <strong>Hair Restoration</strong>
+            <p>Advanced techniques to restore density and hairline aesthetics.</p>
+            <div class="actions">
+              <span class="pill">Hair</span>
+              <button class="btn btn-text" data-know="Hair Restoration">Know More</button>
+            </div>
+          </div>
+        </div>
+        <!-- Nail -->
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-hand-sparkles"></i></div>
+          <div class="body">
+            <strong>Nail Disorders</strong>
+            <p>Diagnosis and treatment of brittleness, infections, and nail changes.</p>
+            <div class="actions">
+              <span class="pill">Nail</span>
+              <button class="btn btn-text" data-know="Nail Disorders">Know More</button>
+            </div>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-shield-heart"></i></div>
+          <div class="body">
+            <strong>Fungal Infections</strong>
+            <p>Targeted therapy for long-term relief and healthy nail regrowth.</p>
+            <div class="actions">
+              <span class="pill">Nail</span>
+              <button class="btn btn-text" data-know="Fungal Infections">Know More</button>
+            </div>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="media"><i class="fa-solid fa-droplet"></i></div>
+          <div class="body">
+            <strong>Nail Care & Aesthetics</strong>
+            <p>Strengthening routines and care for naturally beautiful nails.</p>
+            <div class="actions">
+              <span class="pill">Nail</span>
+              <button class="btn btn-text" data-know="Nail Care & Aesthetics">Know More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPOINTMENT -->
+  <section id="appointment">
+    <div class="container">
+      <div class="section-head">
+        <h2>Book an Appointment</h2>
+        <p class="section-sub">Choose your preferred date and time. We’ll confirm instantly if the slot is available.</p>
+      </div>
+      <div class="appointment">
+        <div class="card form">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="Your name"/>
+          </div>
+          <div class="field">
+            <label for="contact">Contact Number</label>
+            <input id="contact" type="tel" placeholder="+91 9XXXXXXXXX"/>
+          </div>
+          <div class="field">
+            <label for="serviceSel">Select Service</label>
+            <select id="serviceSel">
+              <option>Acne & Scar Management</option>
+              <option>Pigmentation & Melasma</option>
+              <option>Anti‑Aging & Glow</option>
+              <option>Hair Loss (PRP/Medical)</option>
+              <option>Dandruff & Scalp Care</option>
+              <option>Hair Restoration</option>
+              <option>Nail Disorders</option>
+              <option>Fungal Infections</option>
+              <option>Nail Care & Aesthetics</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Preferred Date</label>
+            <input id="date" type="date"/>
+          </div>
+          <div class="field">
+            <label for="time">Preferred Time</label>
+            <input id="time" type="time"/>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" id="checkSlot"><i class="fa-solid fa-magnifying-glass"></i> Check Slot</button>
+            <button class="btn btn-outline" id="bookNow"><i class="fa-solid fa-calendar-check"></i> Confirm Booking</button>
+          </div>
+          <div class="status" id="apptStatus"></div>
+          <small class="note"><i class="fa-solid fa-circle-info"></i> Note: This is a demo. No real booking is made.</small>
+        </div>
+        <div class="card" style="padding:16px">
+          <div class="dash-title"><i class="fa-solid fa-bell"></i> Today’s Popular Slots</div>
+          <div class="list" id="popularSlots">
+            <!-- Filled by JS -->
+          </div>
+          <hr style="border:none;border-top:1px solid rgba(0,0,0,.06);margin:14px 0">
+          <div class="dash-title"><i class="fa-solid fa-lightbulb"></i> Tips</div>
+          <div class="list">
+            <div class="row"><span>Arrive 10 mins early</span><span class="ghost">Check-in faster</span></div>
+            <div class="row"><span>Carry previous prescriptions</span><span class="ghost">Better continuity</span></div>
+            <div class="row"><span>Hydrate well</span><span class="ghost">Skin analysis friendly</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPORTS & PRESCRIPTIONS -->
+  <section id="reports">
+    <div class="container">
+      <div class="section-head">
+        <h2>Reports & Prescriptions</h2>
+        <p class="section-sub">Upload lab reports or download sample prescriptions. All actions here are simulated for demo.</p>
+      </div>
+      <div class="reports-grid">
+        <div class="card uploads">
+          <div class="field">
+            <label for="fileInp">Upload file</label>
+            <input type="file" id="fileInp"/>
+          </div>
+          <button class="btn btn-primary" id="uploadBtn"><i class="fa-solid fa-cloud-arrow-up"></i> Upload</button>
+          <div class="file-list" id="fileList"></div>
+        </div>
+        <div class="card uploads">
+          <div class="dash-title"><i class="fa-solid fa-file-medical"></i> Sample Downloads</div>
+          <div class="file-list">
+            <div class="file-row">
+              <span class="name">Sample Prescription.pdf</span>
+              <span class="tag">120 KB</span>
+              <button class="btn btn-outline" onclick="downloadMock('Sample Prescription.pdf','Prescription: Use SPF 50 daily.')"><i class="fa-solid fa-download"></i> Download</button>
+            </div>
+            <div class="file-row">
+              <span class="name">Sample Lab Report.pdf</span>
+              <span class="tag">98 KB</span>
+              <button class="btn btn-outline" onclick="downloadMock('Sample Lab Report.pdf','CBC within normal limits.')"><i class="fa-solid fa-download"></i> Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATIENT DASHBOARD (MOCK) -->
+  <section id="patient">
+    <div class="container">
+      <div class="section-head">
+        <h2>Patient Dashboard</h2>
+        <p class="section-sub">Keep track of your upcoming visit, past history, and latest prescriptions.</p>
+      </div>
+      <div class="dashboard-grid">
+        <div class="dash-cards">
+          <div class="card dash-card">
+            <div class="dash-title"><i class="fa-solid fa-calendar-day"></i> Upcoming Appointment</div>
+            <div class="list" id="patientUpcoming">
+              <div class="row ghost"><span>No appointment yet</span><span>—</span></div>
+            </div>
+          </div>
+          <div class="card dash-card">
+            <div class="dash-title"><i class="fa-solid fa-clock-rotate-left"></i> Visit History</div>
+            <div class="list" id="patientHistory">
+              <div class="row"><span>Consultation</span><span>12 Aug 2025</span></div>
+              <div class="row"><span>Follow-up</span><span>28 Aug 2025</span></div>
+            </div>
+          </div>
+          <div class="card dash-card">
+            <div class="dash-title"><i class="fa-solid fa-prescription-bottle-medical"></i> Latest Prescriptions</div>
+            <div class="list" id="patientRx">
+              <div class="row"><span>Acne regimen</span><span><button class="btn btn-outline" onclick="downloadMock('Acne-Regimen.txt','BPO AM, Adapalene PM, SPF50 daily')"><i class="fa-solid fa-download"></i> Download</button></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card dash-card">
+          <div class="dash-title"><i class="fa-solid fa-bell"></i> Notifications</div>
+          <div class="notif"><div class="msg"><i class="fa-solid fa-triangle-exclamation"></i> Wear sunscreen if on retinoids.</div><button onclick="this.closest('.notif').remove()">Dismiss</button></div>
+          <div class="notif"><div class="msg"><i class="fa-solid fa-circle-check" style="color:#22c55e"></i> Your profile is 90% complete.</div><button onclick="this.closest('.notif').remove()">Dismiss</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCTOR / ADMIN DASHBOARD (MOCK) -->
+  <section id="doctor">
+    <div class="container">
+      <div class="section-head">
+        <h2>Doctor / Admin Dashboard</h2>
+        <p class="section-sub">Today’s overview with appointments, pending reports, and quick-glance charts.</p>
+      </div>
+      <div class="dashboard-grid">
+        <div class="card dash-card">
+          <div class="dash-title"><i class="fa-solid fa-calendar-check"></i> Today’s Appointments</div>
+          <div class="list" id="doctorAppts">
+            <div class="row"><span>10:30 • Riya Sharma (Acne)</span><span class="ghost">New</span></div>
+            <div class="row"><span>11:00 • Karan Patel (Hair Loss)</span><span class="ghost">Follow-up</span></div>
+            <div class="row"><span>12:15 • Neha Jain (Pigmentation)</span><span class="ghost">New</span></div>
+          </div>
+        </div>
+        <div class="card dash-card">
+          <div class="dash-title"><i class="fa-solid fa-vials"></i> Pending Reports</div>
+          <div class="kpis">
+            <div class="kpi"><small>Lab</small><div class="val" id="labCount">5</div></div>
+            <div class="kpi"><small>Biopsy</small><div class="val">2</div></div>
+            <div class="kpi"><small>Rx Approvals</small><div class="val">3</div></div>
+          </div>
+        </div>
+        <div class="card dash-card">
+          <div class="dash-title"><i class="fa-solid fa-chart-line"></i> Weekly Visits</div>
+          <div class="chart">
+            <div class="bar" data-h="60" title="Mon"></div>
+            <div class="bar" data-h="70" title="Tue"></div>
+            <div class="bar" data-h="85" title="Wed"></div>
+            <div class="bar" data-h="45" title="Thu"></div>
+            <div class="bar" data-h="70" title="Fri"></div>
+            <div class="bar" data-h="60" title="Sat"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <h2>Reviews & Testimonials</h2>
+        <p class="section-sub">What our patients say about their care and experience with us.</p>
+      </div>
+      <div class="testimonials">
+        <div class="carousel">
+          <div class="track" id="tTrack">
+            <div class="tcard">
+              <div class="stars">★★★★★</div>
+              <p>“Professional and caring. My acne cleared in weeks with a plan that finally worked!”</p>
+              <small>— Riya S.</small>
+            </div>
+            <div class="tcard">
+              <div class="stars">★★★★☆</div>
+              <p>“Detailed consultation and great follow‑up. The clinic ambience is calming.”</p>
+              <small>— Karan P.</small>
+            </div>
+            <div class="tcard">
+              <div class="stars">★★★★★</div>
+              <p>“I felt heard and guided. My pigmentation improved so much.”</p>
+              <small>— Neha J.</small>
+            </div>
+          </div>
+          <div class="t-nav">
+            <button id="prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="next"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact Us</h2>
+        <p class="section-sub">We’d love to answer your questions and help you plan your visit.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="card contact-card">
+          <div class="contact-row"><i class="fa-solid fa-location-dot"></i> 2nd Floor, Serenity Plaza, Palm Avenue, Ahmedabad</div>
+          <div class="contact-row"><i class="fa-solid fa-phone"></i> +91 98765 43210</div>
+          <div class="contact-row"><i class="fa-solid fa-envelope"></i> hello@shayonadermacare.com</div>
+          <iframe class="map" loading="lazy" allowfullscreen
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.665992392897!2d72.571362!3d22.629266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84!2sAhmedabad!5e0!3m2!1sen!2sin!4v1700000000000"></iframe>
+        </div>
+        <div class="card contact-card">
+          <div class="field">
+            <label for="cname">Name</label>
+            <input id="cname" type="text" placeholder="Your name"/>
+          </div>
+          <div class="field">
+            <label for="cemail">Email</label>
+            <input id="cemail" type="email" placeholder="you@example.com"/>
+          </div>
+          <div class="field">
+            <label for="cmsg">Message</label>
+            <textarea id="cmsg" placeholder="How can we help?"></textarea>
+          </div>
+          <button class="btn btn-primary" id="sendMsg"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+          <div class="status" id="contactStatus"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="logo" style="width:36px;height:36px"><i class="fa-solid fa-leaf"></i></div>
+        <strong>Shayona Dermacare Clinic</strong>
+      </div>
+      <small>© <span id="year"></span> Shayona Dermacare. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function toggleMenu(force) {
+      const show = typeof force === 'boolean' ? force : mobileMenu.style.display !== 'block';
+      mobileMenu.style.display = show ? 'block' : 'none';
+    }
+    if (menuBtn) menuBtn.addEventListener('click', () => toggleMenu());
+
+    // Smooth "Know More" interactions
+    document.querySelectorAll('[data-know]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const svc = btn.getAttribute('data-know');
+        const msg = `Learn more about ${svc}:\n• Evidence-based protocols\n• Personalized plans\n• Follow-ups for sustained results`;
+        alert(msg);
+      });
+    });
+
+    // Popular slots (demo)
+    const popularSlotsEl = document.getElementById('popularSlots');
+    const demoPopular = ['10:30 AM','11:00 AM','12:15 PM','05:00 PM','06:30 PM'];
+    function renderPopular(){
+      popularSlotsEl.innerHTML = '';
+      demoPopular.forEach(t=>{
+        const row = document.createElement('div');
+        row.className='row';
+        row.innerHTML = `<span><i class="fa-regular fa-clock" style="color:#0b7c85"></i> ${t}</span>
+                         <span><button class="btn btn-outline btn-sm">Pick</button></span>`;
+        row.querySelector('button').addEventListener('click', ()=>{
+          const time = document.getElementById('time');
+          if (time) time.value = to24h(t);
+          document.getElementById('apptStatus').style.display='none';
+          document.getElementById('appointment').scrollIntoView({behavior:'smooth',block:'center'});
+        });
+        popularSlotsEl.appendChild(row);
+      });
+    }
+    function to24h(label){
+      // simple parser for "HH:MM AM/PM"
+      const [hms,ampm] = label.split(' ');
+      let [h,m] = hms.split(':').map(Number);
+      if (ampm==='PM' && h!==12) h+=12;
+      if (ampm==='AM' && h===12) h=0;
+      return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    }
+    renderPopular();
+
+    // Appointment simulation
+    const takenSlots = new Set(); // e.g., '2025-09-20@10:30'
+    const checkBtn = document.getElementById('checkSlot');
+    const bookBtn = document.getElementById('bookNow');
+    const statusEl = document.getElementById('apptStatus');
+
+    function getApptKey(){
+      const d = document.getElementById('date').value;
+      const t = document.getElementById('time').value;
+      const s = document.getElementById('serviceSel').value;
+      const n = document.getElementById('name').value.trim();
+      const c = document.getElementById('contact').value.trim();
+      return {key: d && t ? `${d}@${t}` : '', d, t, s, n, c};
+    }
+    function showStatus(text, ok=true){
+      statusEl.textContent = text;
+      statusEl.style.display = 'block';
+      statusEl.style.background = ok ? 'rgba(125,216,125,0.18)' : 'rgba(255,151,151,0.18)';
+      statusEl.style.borderColor = ok ? 'rgba(125,216,125,0.35)' : 'rgba(255,151,151,0.35)';
+      statusEl.style.color = ok ? '#0c5a0c' : '#8a0b0b';
+    }
+
+    checkBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const {key,d,t,s} = getApptKey();
+      if (!key) return showStatus('Please select a valid date and time.', false);
+      if (takenSlots.has(key)) showStatus('Sorry, that slot is taken. Try another time.', false);
+      else showStatus(`Great news! ${formatDateTime(d,t)} for “${s}” is available.`, true);
+    });
+
+    bookBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const {key,d,t,s,n,c} = getApptKey();
+      if (!n || !c) return showStatus('Please enter your name and contact number.', false);
+      if (!key) return showStatus('Please select a valid date and time.', false);
+      if (takenSlots.has(key)) return showStatus('That slot was just taken. Please choose another one.', false);
+      takenSlots.add(key);
+      showStatus(`Confirmed! See you on ${formatDateTime(d,t)} for “${s}”.`, true);
+      // Reflect in patient dashboard
+      const up = document.getElementById('patientUpcoming');
+      up.innerHTML = '';
+      const row = document.createElement('div');
+      row.className='row';
+      row.innerHTML = `<span>${s}</span><span>${formatDateTime(d,t)}</span>`;
+      up.appendChild(row);
+      // Add to history demo
+      const hist = document.getElementById('patientHistory');
+      const past = document.createElement('div');
+      past.className='row';
+      past.innerHTML = `<span>Booked: ${s}</span><span>${new Date().toLocaleDateString()}</span>`;
+      hist.prepend(past);
+    });
+
+    function formatDateTime(d, t){
+      const dStr = new Date(d + 'T' + (t||'00:00')).toLocaleDateString(undefined, {weekday:'short', day:'2-digit', month:'short', year:'numeric'});
+      const tStr = t ? new Date(d + 'T' + t).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : '';
+      return `${dStr} ${tStr}`;
+    }
+
+    // Reports upload simulation
+    const fileInp = document.getElementById('fileInp');
+    const fileList = document.getElementById('fileList');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const mockStore = []; // {name, size, blob, url}
+
+    uploadBtn.addEventListener('click', ()=>{
+      const file = fileInp.files && fileInp.files[0];
+      if (!file) return alert('Please choose a file.');
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        const blob = new Blob([reader.result], {type: file.type || 'application/octet-stream'});
+        const url = URL.createObjectURL(blob);
+        const item = {name: file.name, size: file.size, blob, url};
+        mockStore.push(item);
+        renderFiles();
+        fileInp.value = '';
+      };
+      reader.readAsArrayBuffer(file);
+    });
+
+    function renderFiles(){
+      fileList.innerHTML = '';
+      if (!mockStore.length){
+        const empty = document.createElement('div');
+        empty.className='ghost';
+        empty.textContent='No files uploaded yet.';
+        fileList.appendChild(empty);
+        return;
+      }
+      mockStore.forEach((f, idx)=>{
+        const row = document.createElement('div');
+        row.className='file-row';
+        row.innerHTML = `
+          <span class="name"><i class="fa-regular fa-file-lines" style="color:#0a7d86"></i> ${f.name}</span>
+          <span class="tag">${Math.ceil(f.size/1024)} KB</span>
+          <span>
+            <a class="btn btn-outline" href="${f.url}" download="${f.name}"><i class="fa-solid fa-download"></i> Download</a>
+            <button class="btn btn-text" data-del="${idx}"><i class="fa-solid fa-trash"></i> Remove</button>
+          </span>
+        `;
+        row.querySelector('[data-del]').addEventListener('click', (e)=>{
+          const i = parseInt(e.currentTarget.getAttribute('data-del'),10);
+          URL.revokeObjectURL(mockStore[i].url);
+          mockStore.splice(i,1);
+          renderFiles();
+          // update doctor pending count
+          const labCount = document.getElementById('labCount');
+          labCount.textContent = Math.max(0, parseInt(labCount.textContent,10) - 1);
+        });
+        fileList.appendChild(row);
+      });
+    }
+    function downloadMock(name, content){
+      const blob = new Blob([content], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },0);
+    }
+    renderFiles();
+
+    // Testimonials carousel
+    const track = document.getElementById('tTrack');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let index = 0;
+    function slideTo(i){
+      const cards = track.children.length;
+      index = (i + cards) % cards;
+      const width = track.querySelector('.tcard').getBoundingClientRect().width + 16; // plus gap
+      track.style.transform = `translateX(${-index * width}px)`;
+    }
+    prev.addEventListener('click', ()=> slideTo(index-1));
+    next.addEventListener('click', ()=> slideTo(index+1));
+    let auto = setInterval(()=> slideTo(index+1), 4000);
+    // pause on hover
+    track.addEventListener('mouseenter', ()=> clearInterval(auto));
+    track.addEventListener('mouseleave', ()=> auto = setInterval(()=> slideTo(index+1), 4000));
+    window.addEventListener('resize', ()=> slideTo(index));
+
+    // Contact form (demo)
+    document.getElementById('sendMsg').addEventListener('click', ()=>{
+      const n = document.getElementById('cname').value.trim();
+      const e = document.getElementById('cemail').value.trim();
+      const m = document.getElementById('cmsg').value.trim();
+      const s = document.getElementById('contactStatus');
+      if (!n || !e || !m){
+        s.textContent='Please complete all fields.'; s.style.display='block';
+        s.style.background='rgba(255,151,151,0.18)'; s.style.borderColor='rgba(255,151,151,0.35)'; s.style.color='#8a0b0b';
+        return;
+      }
+      s.textContent='Thanks! Your message has been sent (demo).';
+      s.style.display='block';
+      s.style.background='rgba(125,216,125,0.18)'; s.style.borderColor='rgba(125,216,125,0.35)'; s.style.color='#0c5a0c';
+      document.getElementById('cname').value='';
+      document.getElementById('cemail').value='';
+      document.getElementById('cmsg').value='';
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+```
