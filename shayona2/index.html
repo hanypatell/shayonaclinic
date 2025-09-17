@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Shayona Dermacare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13ecec",
+            "background-light": "#f6f8f8",
+            "background-dark": "#102222",
+            "content-light": "#ffffff",
+            "content-dark": "#1a2c2c",
+            "text-primary-light": "#0d1b1b",
+            "text-primary-dark": "#e0f2f2",
+            "text-secondary-light": "#4c9a9a",
+            "text-secondary-dark": "#80cbc4",
+            "border-light": "#e0f2f2",
+            "border-dark": "#264040",
+            "subtle-light": "#e7f3f3",
+            "subtle-dark": "#203a3a",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "0.75rem",
+            "xl": "1rem",
+            "full": "9999px"
+          },
+          boxShadow: {
+            'card': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            'card-dark': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+          }
+        },
+      },
+    }
+</script>
+<style>
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .dark .glassmorphism {
+      background: rgba(26, 44, 44, 0.2);
+      border: 1px solid rgba(26, 44, 44, 0.3);
+    }
+    .group:hover .group-hover-card {
+      backdrop-filter: blur(4px);
+      background-color: rgba(19, 236, 236, 0.2);
+    }
+    .form-input, .form-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark">
+<div class="relative w-full min-h-screen overflow-x-hidden">
+<header class="fixed top-0 left-0 right-0 z-50 glassmorphism border-b border-primary/20 dark:border-primary/30">
+<div class="container mx-auto flex items-center justify-between px-6 py-4">
+<div class="flex items-center gap-3">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+<h2 class="text-xl font-bold tracking-tight">Shayona Dermacare</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#home">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#services">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#dashboard">Dashboard</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="md:hidden text-text-primary-light dark:text-text-primary-dark" id="mobileMenuBtn">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<a class="hidden md:flex min-w-[150px] items-center justify-center rounded-full h-10 px-6 bg-primary text-background-dark text-sm font-bold tracking-wide hover:opacity-90 transition-opacity" href="#book-appointment">
+          Book Appointment
+</a>
+</div>
+</div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden md:hidden fixed top-16 left-0 right-0 z-40 glassmorphism border-b border-primary/20 dark:border-primary/30">
+<div class="container mx-auto px-6 py-4">
+<nav class="flex flex-col gap-4">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#home">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#services">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#dashboard">Dashboard</a>
+<a class="flex min-w-[150px] items-center justify-center rounded-full h-10 px-6 bg-primary text-background-dark text-sm font-bold tracking-wide hover:opacity-90 transition-opacity" href="#book-appointment">
+          Book Appointment
+</a>
+</nav>
+</div>
+</div>
+
+<main class="container mx-auto px-6 pt-24">
+<section class="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center text-center rounded-xl overflow-hidden mb-24" id="home">
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style='background-image: url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");'></div>
+<div class="absolute inset-0 bg-gradient-to-br from-background-dark/70 via-background-dark/50 to-background-dark/70"></div>
+<div class="relative z-10 flex flex-col items-center gap-6 p-4">
+<h1 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tighter drop-shadow-lg">
+            Healthy Skin, Confident You
+          </h1>
+<p class="text-white/90 text-base md:text-lg max-w-2xl drop-shadow-md">
+            Expert care for your skin, hair, and nails. Experience the difference with our state-of-the-art treatments and personalized approach.
+          </p>
+<a class="mt-4 flex min-w-[200px] items-center justify-center rounded-full h-12 px-8 bg-primary text-background-dark text-base font-bold tracking-wide transform hover:scale-105 transition-transform shadow-lg hover:shadow-xl" href="#book-appointment">
+            Book an Appointment
+          </a>
+</div>
+</section>
+<section class="mb-24 scroll-mt-24 px-4 sm:px-6 lg:px-8 lg:py-20" id="services">
+<div class="mx-auto max-w-5xl">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Our Specialized Services</h2>
+<p class="mt-4 max-w-2xl mx-auto text-lg text-text-secondary-light dark:text-text-secondary-dark">Explore our comprehensive range of treatments tailored to your skin, hair, and nail care needs.</p>
+</div>
+<div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+<div class="group relative overflow-hidden rounded-xl border border-primary/20 bg-background-light/50 dark:bg-background-dark/50 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+<div class="absolute inset-0 group-hover-card transition-all duration-300"></div>
+<div class="relative">
+<img alt="Skin Treatments" class="aspect-video w-full object-cover" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+<div class="p-6">
+<h3 class="text-xl font-bold">Skin Treatments</h3>
+<p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">Advanced solutions for acne, aging, pigmentation, and more.</p>
+<button class="mt-4 flex items-center gap-2 rounded-lg bg-primary/20 px-4 py-2 text-sm font-bold text-primary transition-colors group-hover:bg-primary group-hover:text-background-dark dark:bg-primary/30 dark:group-hover:text-background-dark">
+                    Know More
+                    <span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl border border-primary/20 bg-background-light/50 dark:bg-background-dark/50 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+<div class="absolute inset-0 group-hover-card transition-all duration-300"></div>
+<div class="relative">
+<img alt="Hair Treatments" class="aspect-video w-full object-cover" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+<div class="p-6">
+<h3 class="text-xl font-bold">Hair Treatments</h3>
+<p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">Specialized care for hair loss, scalp conditions, and hair restoration.</p>
+<button class="mt-4 flex items-center gap-2 rounded-lg bg-primary/20 px-4 py-2 text-sm font-bold text-primary transition-colors group-hover:bg-primary group-hover:text-background-dark dark:bg-primary/30 dark:group-hover:text-background-dark">
+                    Know More
+                    <span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl border border-primary/20 bg-background-light/50 dark:bg-background-dark/50 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+<div class="absolute inset-0 group-hover-card transition-all duration-300"></div>
+<div class="relative">
+<img alt="Nail Treatments" class="aspect-video w-full object-cover" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+<div class="p-6">
+<h3 class="text-xl font-bold">Nail Treatments</h3>
+<p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">Comprehensive treatments for nail disorders and cosmetic enhancements.</p>
+<button class="mt-4 flex items-center gap-2 rounded-lg bg-primary/20 px-4 py-2 text-sm font-bold text-primary transition-colors group-hover:bg-primary group-hover:text-background-dark dark:bg-primary/30 dark:group-hover:text-background-dark">
+                    Know More
+                    <span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-24 scroll-mt-24 bg-content-light dark:bg-content-dark rounded-xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-12" id="about">
+<div class="w-full">
+<h2 class="text-3xl font-bold mb-4">Meet Our Doctor & Clinic Info</h2>
+<div class="flex flex-col md:flex-row items-center gap-6 md:gap-8 mt-8">
+<div class="flex-shrink-0">
+<img alt="Dr. Roshni Patel" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary/50" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+</div>
+<div class="text-center md:text-left">
+<h3 class="text-2xl md:text-3xl font-bold">Dr. Roshni Patel</h3>
+<p class="text-md text-primary font-medium mt-1">Board-Certified Dermatologist</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-3 max-w-lg">
+              Dr. Roshni Patel is a board-certified dermatologist with over 10 years of experience in treating skin, hair, and nail conditions. She is dedicated to providing personalized care and achieving optimal results for her patients.
+            </p>
+</div>
+</div>
+<div class="mt-12">
+<h3 class="text-2xl font-bold text-center mb-8">Clinic Information</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl shadow-card dark:shadow-card-dark backdrop-blur-lg border border-primary/20 flex flex-col items-center text-center">
+<div class="bg-primary/20 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+</div>
+<h4 class="text-lg font-bold">Clinic Hours</h4>
+<div class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-2 space-y-1">
+<p>Mon - Fri: 9:00 AM - 5:00 PM</p>
+<p>Saturday: 10:00 AM - 2:00 PM</p>
+<p>Sunday: Closed</p>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl shadow-card dark:shadow-card-dark backdrop-blur-lg border border-primary/20 flex flex-col items-center text-center">
+<div class="bg-primary/20 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">location_on</span>
+</div>
+<h4 class="text-lg font-bold">Address</h4>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-2">
+                Uma Plaza, 1st Floor<br />Shop Number 41-42
+              </p>
+</div>
+<div class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl shadow-card dark:shadow-card-dark backdrop-blur-lg border border-primary/20 flex flex-col items-center text-center">
+<div class="bg-primary/20 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">call</span>
+</div>
+<h4 class="text-lg font-bold">Contact</h4>
+<div class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-2 space-y-1">
+<p>Phone: (123) 456-7890</p>
+<p>Email: shayonacarel@gmail.com</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Enhanced Appointment Booking Section -->
+<section class="mb-24 scroll-mt-24" id="book-appointment">
+<div class="min-h-screen flex flex-col items-center justify-center p-4">
+<div class="w-full max-w-lg mx-auto bg-white/50 dark:bg-background-dark/50 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden">
+<div class="p-8">
+<div class="text-center mb-8">
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Book Your Appointment</h1>
+<p class="text-gray-600 dark:text-gray-400 mt-2">Experience premium skincare with our experts.</p>
+</div>
+<form class="space-y-6" id="bookingForm">
+<div class="relative">
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 left-3 text-gray-400 dark:text-gray-500">person</span>
+<input class="form-input w-full pl-10 pr-4 py-3 bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-primary focus:border-primary transition duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" id="name" placeholder="Full Name" type="text" required/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 left-3 text-gray-400 dark:text-gray-500">phone</span>
+<input class="form-input w-full pl-10 pr-4 py-3 bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-primary focus:border-primary transition duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" id="contact" placeholder="Contact Number" type="tel" required/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 left-3 text-gray-400 dark:text-gray-500">medical_services</span>
+<select class="form-select w-full pl-10 pr-4 py-3 bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-primary focus:border-primary transition duration-300 text-gray-900 dark:text-white" id="service" required>
+<option value="">Select Service</option>
+<option value="Skin Consultation">Skin Consultation</option>
+<option value="Hair Treatment">Hair Treatment</option>
+<option value="Nail Care">Nail Care</option>
+<option value="Acne Treatment">Acne Treatment</option>
+<option value="Anti-Aging Treatment">Anti-Aging Treatment</option>
+<option value="Hair Loss Consultation">Hair Loss Consultation</option>
+</select>
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 dark:text-gray-500 pointer-events-none">expand_more</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 left-3 text-gray-400 dark:text-gray-500">calendar_today</span>
+<input class="form-input w-full pl-10 pr-4 py-3 bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-primary focus:border-primary transition duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" id="date" type="date" required/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 left-3 text-gray-400 dark:text-gray-500">schedule</span>
+<select class="form-select w-full pl-10 pr-4 py-3 bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-primary focus:border-primary transition duration-300 text-gray-900 dark:text-white" id="time" required>
+<option value="">Select Time</option>
+<option value="10:00 AM">10:00 AM</option>
+<option value="12:00 PM">12:00 PM</option>
+<option value="02:00 PM">02:00 PM</option>
+<option value="04:00 PM">04:00 PM</option>
+</select>
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 dark:text-gray-500 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<button class="w-full bg-primary text-background-dark font-bold py-3 px-4 rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-background-dark transition duration-300" type="submit">
+                            Check Availability
+                        </button>
+</div>
+</form>
+<div class="hidden mt-6 p-4 rounded-lg bg-primary/20 text-gray-800 dark:text-gray-200 text-center" id="confirmationMessage">
+<p class="font-bold text-lg mb-2">Appointment Request Submitted!</p>
+<p>Thank you! Your appointment request has been sent. We will confirm your slot via call or message within 24 hours.</p>
+<button class="mt-4 bg-primary text-background-dark font-bold py-2 px-4 rounded-lg hover:bg-primary/90 transition duration-300" onclick="location.reload()">
+                            Book Another Appointment
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="mb-24 scroll-mt-24" id="contact">
+<h2 class="text-3xl font-bold text-center mb-4">Get In Touch</h2>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-center mb-12 max-w-2xl mx-auto">We are here to answer your questions and help you schedule your appointment. Reach out to us today.</p>
+<div class="max-w-2xl mx-auto bg-content-light dark:bg-content-dark rounded-xl p-8 shadow-card dark:shadow-card-dark">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h3 class="text-xl font-bold mb-4">Contact Information</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">phone</span>
+<span class="text-sm">(123) 456-7890</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">email</span>
+<span class="text-sm">shayonacarel@gmail.com</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-sm">Uma Plaza, 1st Floor<br>Shop Number 41-42</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">Quick Contact</h3>
+<form class="space-y-4">
+<input class="w-full px-4 py-2 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Your Name" type="text" />
+<input class="w-full px-4 py-2 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Your Email" type="email" />
+<textarea class="w-full px-4 py-2 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Your Message" rows="3"></textarea>
+<button class="w-full bg-primary text-background-dark font-bold py-2 px-4 rounded-lg hover:bg-primary/90 transition duration-300" type="submit">
+                            Send Message
+                        </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-24 scroll-mt-24" id="dashboard">
+<div class="container mx-auto p-4 sm:p-6 lg:p-8 flex-1">
+<h1 class="text-3xl font-bold mb-8">Dashboard</h1>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="space-y-4">
+<h3 class="text-lg font-bold">Notifications</h3>
+<div class="bg-white/50 dark:bg-content-dark/50 p-4 rounded-lg shadow-card dark:shadow-card-dark glassmorphism flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">campaign</span>
+<div>
+<p class="font-semibold">Appointment Reminder</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Your appointment with Dr. Roshni Patel is tomorrow at 10:00 AM.</p>
+</div>
+</div>
+<button class="text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="bg-white/50 dark:bg-content-dark/50 p-4 rounded-lg shadow-card dark:shadow-card-dark glassmorphism flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">medication</span>
+<div>
+<p class="font-semibold">Prescription Ready</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Your prescription for acne treatment is ready for pickup.</p>
+</div>
+</div>
+<button class="text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors"><span class="material-symbols-outlined">close</span></button>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Visit History</h3>
+<div class="bg-white dark:bg-content-dark rounded-lg shadow-card dark:shadow-card-dark overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-background-light dark:bg-background-dark">
+<tr>
+<th class="p-4 text-sm font-semibold">Date</th>
+<th class="p-4 text-sm font-semibold">Doctor</th>
+<th class="p-4 text-sm font-semibold">Purpose</th>
+<th class="p-4 text-sm font-semibold text-center">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-t border-border-light dark:border-border-dark">
+<td class="p-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">2024-07-20</td>
+<td class="p-4 text-sm">Dr. Roshni Patel</td>
+<td class="p-4 text-sm">Skin Checkup</td>
+<td class="p-4 text-center"><span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300">Completed</span></td>
+</tr>
+<tr class="border-t border-border-light dark:border-border-dark">
+<td class="p-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">2024-06-15</td>
+<td class="p-4 text-sm">Dr. Rohan Verma</td>
+<td class="p-4 text-sm">Hair Loss Consultation</td>
+<td class="p-4 text-center"><span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300">Completed</span></td>
+</tr>
+<tr class="border-t border-border-light dark:border-border-dark">
+<td class="p-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">2024-05-02</td>
+<td class="p-4 text-sm">Dr. Roshni Patel</td>
+<td class="p-4 text-sm">Acne Treatment</td>
+<td class="p-4 text-center"><span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300">Completed</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div>
+<h3 class="text-lg font-bold mb-4">Upcoming Appointments</h3>
+<div class="bg-white dark:bg-content-dark rounded-lg shadow-card dark:shadow-card-dark overflow-hidden">
+<div class="w-full h-40 bg-center bg-cover" style='background-image: url("https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");'></div>
+<div class="p-4">
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Tomorrow, 10:00 AM</p>
+<p class="font-bold text-lg mt-1">Dr. Roshni Patel</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Dermatology Consultation</p>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Latest Prescriptions</h3>
+<div class="bg-white dark:bg-content-dark rounded-lg shadow-card dark:shadow-card-dark flex items-center p-4 gap-4">
+<div class="flex-shrink-0 w-24 h-24 rounded-lg bg-center bg-cover" style='background-image: url("https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");'></div>
+<div class="flex-1">
+<p class="font-bold">Acne Treatment</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-3">Prescribed by Dr. Roshni Patel</p>
+<button class="w-full text-center bg-primary/20 dark:bg-primary/30 text-primary font-bold py-2 px-4 rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors text-sm">
+                          View Details
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-content-light dark:bg-content-dark border-t border-border-light dark:border-border-dark">
+<div class="container mx-auto px-6 py-12">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<h3 class="text-lg font-bold">Shayona Dermacare</h3>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">© 2024. All rights reserved.</p>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#" aria-label="Facebook">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#" aria-label="Twitter">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+</svg>
+</a>
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#" aria-label="Instagram">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 012.748 2.748c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-2.748 2.748c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-2.748-2.748c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 012.748-2.748c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 8.118c-2.148 0-3.882 1.734-3.882 3.882s1.734 3.882 3.882 3.882 3.882-1.734 3.882-3.882S14.148 8.118 12 8.118zm0 6.162c-1.246 0-2.26-1.014-2.26-2.26s1.014-2.26 2.26-2.26 2.26 1.014 2.26 2.26-1.014 2.26-2.26 2.26zm4.549-6.57c-.78 0-1.418.638-1.418 1.418s.638 1.418 1.418 1.418 1.418-.638 1.418-1.418-.638-1.418-1.418-1.418z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu functionality
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Enhanced booking form handling
+      const bookingForm = document.getElementById('bookingForm');
+      const confirmationMessage = document.getElementById('confirmationMessage');
+      
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          const name = document.getElementById('name').value.trim();
+          const contact = document.getElementById('contact').value.trim();
+          const service = document.getElementById('service').value;
+          const date = document.getElementById('date').value;
+          const time = document.getElementById('time').value;
+          
+          // Enhanced validation
+          if (!name || !contact || !service || !date || !time) {
+            alert("Please fill in all fields.");
+            return;
+          }
+          
+          // Phone number validation
+          const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+          if (!phoneRegex.test(contact.replace(/\s/g, ''))) {
+            alert("Please enter a valid phone number.");
+            return;
+          }
+          
+          // Date validation (not in the past)
+          const selectedDate = new Date(date);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          
+          if (selectedDate < today) {
+            alert("Please select a future date.");
+            return;
+          }
+          
+          // Show confirmation
+          bookingForm.classList.add('hidden');
+          confirmationMessage.classList.remove('hidden');
+          
+          // Scroll to confirmation message
+          confirmationMessage.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            // Close mobile menu if open
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+              mobileMenu.classList.add('hidden');
+            }
+          }
+        });
+      });
+    });
+</script>
+</body>
+</html>
